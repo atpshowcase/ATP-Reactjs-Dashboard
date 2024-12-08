@@ -1,0 +1,10 @@
+/* TablesPage.css */
+
+/* CSS for centering the spinner */
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px; /* Adjust height to your needs */
+  }
+  

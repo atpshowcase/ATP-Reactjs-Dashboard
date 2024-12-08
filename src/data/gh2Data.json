@@ -1,0 +1,43 @@
+{
+  "sensor": {
+    "suhu": 26.3,
+    "kelembapan": 75
+  },
+  "switch": {
+    "zon2": "off",
+    "zone1": "on",
+    "zone3": "off"
+  },
+  "_id": "67526b6ae7e83b8e9fd04f89",
+  "ghId": "gh2",
+  "ghName": "hydro",
+  "status": "running",
+  "devices": [
+    {
+      "lastSensorValue": {
+        "suhu": 30,
+        "ph": 4,
+        "tds": 1000
+      },
+      "dossingPump": {
+        "flowRate": {
+          "A": {
+            "ml": "1",
+            "time": "100"
+          },
+          "B": {
+            "ml": "5",
+            "time": "3000"
+          }
+        },
+        "schedule": []
+      },
+      "_id": "67532f4de7e83b8e9fd04fca",
+      "deviceId": "F1",
+      "name": "device 1",
+      "status": "online",
+      "location": "gh2",
+      "__v": 2
+    }
+  ]
+}

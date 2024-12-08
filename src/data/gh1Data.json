@@ -1,0 +1,203 @@
+{
+  "sensor": {
+    "suhu": 26.3,
+    "kelembapan": 75
+  },
+  "switch": {
+    "blower": "on",
+    "mist": "off",
+    "coller": "off"
+  },
+  "_id": "674e8b702efd45a788d1c09e",
+  "ghId": "gh1",
+  "ghName": "vertical",
+  "status": "running",
+  "devices": [
+    {
+      "lastSensorValue": {
+        "suhu": 30,
+        "ph": 4,
+        "tds": 1000
+      },
+      "dossingPump": {
+        "flowRate": {
+          "A": {
+            "ml": "1",
+            "time": "100"
+          },
+          "B": {
+            "ml": "5",
+            "time": "555.55"
+          }
+        },
+        "schedule": [
+          {
+            "_id": "6753f752db05b6f17ad6c7a1",
+            "repeat": "1,2,3,4,5,6,7",
+            "time": "1999-12-31T17:00:00.000Z",
+            "dosis": 1
+          },
+          {
+            "_id": "6753f752db05b6f17ad6c7a2",
+            "repeat": "1,5",
+            "time": "1999-12-31T08:00:00.000Z",
+            "dosis": 2
+          },
+          {
+            "repeat": "1,2,3",
+            "time": "2024-12-06T10:00:00.000Z",
+            "dosis": 3,
+            "_id": "67526712856621f0b56a3ac4"
+          },
+          {
+            "repeat": "1,2,3",
+            "time": "2024-12-06T10:00:00.000Z",
+            "dosis": 3,
+            "_id": "67527224856621f0b56a3c20"
+          },
+          {
+            "repeat": "1,2,3",
+            "time": "2024-12-06T10:00:00.000Z",
+            "dosis": 3,
+            "_id": "6753cae9db05b6f17ad6bfae"
+          }
+        ]
+      },
+      "_id": "674e8a332efd45a788d1c099",
+      "deviceId": "RAK1",
+      "name": "device 1",
+      "status": "online",
+      "location": "gh1",
+      "__v": 3
+    },
+    {
+      "lastSensorValue": {
+        "suhu": 30,
+        "ph": 4,
+        "tds": 1000
+      },
+      "dossingPump": {
+        "flowRate": {
+          "A": {
+            "ml": "1",
+            "time": "100"
+          },
+          "B": {
+            "ml": "5",
+            "time": "3000"
+          }
+        },
+        "schedule": [
+          {
+            "_id": "6753f752db05b6f17ad6c7a6",
+            "repeat": "1,2,3,4,5,6,7",
+            "time": "1999-12-31T17:00:00.000Z",
+            "dosis": 1
+          },
+          {
+            "_id": "6753f752db05b6f17ad6c7a7",
+            "repeat": "1,5",
+            "time": "1999-12-31T08:00:00.000Z",
+            "dosis": 2
+          },
+          {
+            "repeat": "1,2,3",
+            "time": "2024-12-06T10:00:00.000Z",
+            "dosis": 3,
+            "_id": "67526712856621f0b56a3ac4"
+          },
+          {
+            "repeat": "1,2,3",
+            "time": "2024-12-06T10:00:00.000Z",
+            "dosis": 3,
+            "_id": "67527224856621f0b56a3c20"
+          }
+        ]
+      },
+      "_id": "67532ee3e7e83b8e9fd04fc7",
+      "deviceId": "RAK2",
+      "name": "device 2",
+      "status": "online",
+      "location": "gh1",
+      "__v": 2
+    },
+    {
+      "lastSensorValue": {
+        "suhu": 30,
+        "ph": 4,
+        "tds": 1000
+      },
+      "dossingPump": {
+        "flowRate": {
+          "A": {
+            "ml": "1",
+            "time": "100"
+          },
+          "B": {
+            "ml": "5",
+            "time": "3000"
+          }
+        },
+        "schedule": []
+      },
+      "_id": "67532f09e7e83b8e9fd04fc8",
+      "deviceId": "RAK3",
+      "name": "device 3",
+      "status": "online",
+      "location": "gh1",
+      "__v": 2
+    },
+    {
+      "lastSensorValue": {
+        "suhu": 30,
+        "ph": 4,
+        "tds": 1000
+      },
+      "dossingPump": {
+        "flowRate": {
+          "A": {
+            "ml": "1",
+            "time": "100"
+          },
+          "B": {
+            "ml": "5",
+            "time": "3000"
+          }
+        },
+        "schedule": []
+      },
+      "_id": "67532f3ae7e83b8e9fd04fc9",
+      "deviceId": "RAK4",
+      "name": "device 4",
+      "status": "online",
+      "location": "gh1",
+      "__v": 2
+    },
+    {
+      "lastSensorValue": {
+        "suhu": 30,
+        "ph": 4,
+        "tds": 1000
+      },
+      "dossingPump": {
+        "flowRate": {
+          "A": {
+            "ml": "1",
+            "time": "100"
+          },
+          "B": {
+            "ml": "5",
+            "time": "3000"
+          }
+        },
+        "schedule": []
+      },
+      "_id": "67532f5be7e83b8e9fd04fcb",
+      "deviceId": "F2",
+      "name": "device 2",
+      "status": "online",
+      "location": "gh1",
+      "__v": 2
+    }
+  ]
+}
