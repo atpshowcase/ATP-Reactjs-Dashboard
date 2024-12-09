@@ -10,9 +10,17 @@ export const VerticalFarmingPage = () => {
 
   const [data, setData] = useState([]);
   const [dataTable, setDataTable] = useState([]);
+  const [dataSwitch, setDataSwitch] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const handleSwitchChange = (zone) => {
+    setDataSwitch((prevState) => ({
+      ...prevState,
+      [zone]: prevState[zone] === "on" ? "off" : "on",
+    }));
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,6 +29,7 @@ export const VerticalFarmingPage = () => {
         if (!response.ok) throw new Error("Network response was not ok");
         const result = await response.json();
 
+        setDataSwitch(result.switch);
         setDataTable(result.devices);
         setData(result);
       } catch (error) {
@@ -120,6 +129,7 @@ export const VerticalFarmingPage = () => {
               <div className="mb-3 col-md-6">
                 <div className="d-flex justify-content-center ">
                   <div className="d-flex flex-column gap-4 align-items-right">
+                    {/* Zone 1 Switch */}
                     <div
                       className="form-check form-switch flex-column align-items-right"
                       style={{ fontSize: "2rem" }}
@@ -129,16 +139,19 @@ export const VerticalFarmingPage = () => {
                         type="checkbox"
                         id="flexSwitchCheckDefault1"
                         style={{ width: "4rem", height: "2rem" }}
+                        checked={dataSwitch.blower === "on"}
+                        onChange={() => handleSwitchChange("blower")}
                       />
                       <label
                         className="form-check-label"
                         htmlFor="flexSwitchCheckDefault1"
                         style={{ fontSize: "2rem" }}
                       >
-                        Zone 1
+                        Blower
                       </label>
                     </div>
 
+                    {/* Zone 2 Switch */}
                     <div
                       className="form-check form-switch flex-column align-items-center"
                       style={{ fontSize: "2rem" }}
@@ -148,16 +161,19 @@ export const VerticalFarmingPage = () => {
                         type="checkbox"
                         id="flexSwitchCheckDefault2"
                         style={{ width: "4rem", height: "2rem" }}
+                        checked={dataSwitch.coller === "on"}
+                        onChange={() => handleSwitchChange("coller")}
                       />
                       <label
                         className="form-check-label"
                         htmlFor="flexSwitchCheckDefault2"
                         style={{ fontSize: "2rem" }}
                       >
-                        Zone 2
+                        Coller
                       </label>
                     </div>
 
+                    {/* Zone 3 Switch */}
                     <div
                       className="form-check form-switch flex-column align-items-center"
                       style={{ fontSize: "2rem" }}
@@ -167,13 +183,15 @@ export const VerticalFarmingPage = () => {
                         type="checkbox"
                         id="flexSwitchCheckDefault3"
                         style={{ width: "4rem", height: "2rem" }}
+                        checked={dataSwitch.mist === "on"}
+                        onChange={() => handleSwitchChange("mist")}
                       />
                       <label
                         className="form-check-label"
                         htmlFor="flexSwitchCheckDefault3"
                         style={{ fontSize: "2rem" }}
                       >
-                        Zone 3
+                        Mist
                       </label>
                     </div>
                   </div>
@@ -183,12 +201,15 @@ export const VerticalFarmingPage = () => {
                 <div className="card">
                   <div
                     className="d-flex flex-column align-items-center"
-                    style={{ paddingTop: "15px", height: "300px" }} // Add desired height
+                    style={{ paddingTop: "15px", height: "300px" }} 
                   >
                     {" "}
                     {/* Center content horizontally */}
                     <Link to="/vertical-farming" className="text-center">
-                      <h5><b>Temperature</b></h5> {/* Center the text */}
+                      <h5>
+                        <b>Temperature</b>
+                      </h5>{" "}
+                      {/* Center the text */}
                       <div
                         className="d-flex justify-content-center align-items-center"
                         style={{
@@ -196,7 +217,7 @@ export const VerticalFarmingPage = () => {
                           textAlign: "center",
                           wordWrap: "break-word",
                           overflowWrap: "break-word",
-                        }} // Ensure text wraps
+                        }} 
                       >
                         {data ? (
                           <h1
@@ -222,12 +243,15 @@ export const VerticalFarmingPage = () => {
                 <div className="card">
                   <div
                     className="d-flex flex-column align-items-center"
-                    style={{ paddingTop: "15px", height: "300px" }} // Add desired height
+                    style={{ paddingTop: "15px", height: "300px" }} 
                   >
                     {" "}
                     {/* Center content horizontally */}
                     <Link to="/vertical-farming" className="text-center">
-                      <h5><b>Humidity</b></h5> {/* Center the text */}
+                      <h5>
+                        <b>Humidity</b>
+                      </h5>{" "}
+                      {/* Center the text */}
                       <div
                         className="d-flex justify-content-center align-items-center"
                         style={{
@@ -235,7 +259,7 @@ export const VerticalFarmingPage = () => {
                           textAlign: "center",
                           wordWrap: "break-word",
                           overflowWrap: "break-word",
-                        }} // Ensure text wraps
+                        }} 
                       >
                         {data ? (
                           <h1

@@ -2,18 +2,25 @@ import React, { useState, useEffect } from "react";
 import DataTable from "react-data-table-component";
 import { ClipLoader } from "react-spinners";
 import { Link, useNavigate } from "react-router-dom";
-import apiEndpoints from "../config/apiConfig"; // Import API configuration
-// import axios from "axios";
+import apiEndpoints from "../config/apiConfig";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 
 export const DripIrrigationPage = () => {
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
 
-  const [data, setData] = useState([]); // Semua data dari API
-  const [dataTable, setDataTable] = useState([]); // Semua data dari API
-  const [loading, setLoading] = useState(true); // State loading
-  const [currentPage, setCurrentPage] = useState(1); // Halaman saat ini
-  const [rowsPerPage, setRowsPerPage] = useState(10); // Baris per halaman
+  const [data, setData] = useState([]);
+  const [dataTable, setDataTable] = useState([]);
+  const [dataSwitch, setDataSwitch] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const handleSwitchChange = (zone) => {
+    setDataSwitch((prevState) => ({
+      ...prevState,
+      [zone]: prevState[zone] === "on" ? "off" : "on",
+    }));
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,6 +29,7 @@ export const DripIrrigationPage = () => {
         if (!response.ok) throw new Error("Network response was not ok");
         const result = await response.json();
 
+        setDataSwitch(result.switch);
         setDataTable(result.devices);
         setData(result);
       } catch (error) {
@@ -32,20 +40,23 @@ export const DripIrrigationPage = () => {
     };
 
     fetchData();
+
+    const interval = setInterval(() => {
+      fetchData();
+    }, 2000);
+
+    return () => clearInterval(interval);
   }, []);
 
   const handleEdit = (rowId) => {
-    // Navigate to /dashboard-action/rowId (e.g., /dashboard-action/1)
     navigate(`/dashboard-action/${rowId}`);
   };
 
-  // Hitung data untuk halaman saat ini
   const paginatedData = dataTable.slice(
     (currentPage - 1) * rowsPerPage,
     currentPage * rowsPerPage
   );
 
-  // Kolom untuk DataTable
   const columns = [
     {
       name: "No.",
@@ -117,6 +128,7 @@ export const DripIrrigationPage = () => {
               <div className="mb-3 col-md-6">
                 <div className="d-flex justify-content-center ">
                   <div className="d-flex flex-column gap-4 align-items-right">
+                    {/* Zone 1 Switch */}
                     <div
                       className="form-check form-switch flex-column align-items-right"
                       style={{ fontSize: "2rem" }}
@@ -126,16 +138,19 @@ export const DripIrrigationPage = () => {
                         type="checkbox"
                         id="flexSwitchCheckDefault1"
                         style={{ width: "4rem", height: "2rem" }}
+                        checked={dataSwitch.zone1 === "on"}
+                        onChange={() => handleSwitchChange("zone1")}
                       />
                       <label
                         className="form-check-label"
                         htmlFor="flexSwitchCheckDefault1"
                         style={{ fontSize: "2rem" }}
                       >
-                        Mist
+                        Zone 1
                       </label>
                     </div>
 
+                    {/* Zone 2 Switch */}
                     <div
                       className="form-check form-switch flex-column align-items-center"
                       style={{ fontSize: "2rem" }}
@@ -145,16 +160,19 @@ export const DripIrrigationPage = () => {
                         type="checkbox"
                         id="flexSwitchCheckDefault2"
                         style={{ width: "4rem", height: "2rem" }}
+                        checked={dataSwitch.zone2 === "on"}
+                        onChange={() => handleSwitchChange("zone2")}
                       />
                       <label
                         className="form-check-label"
                         htmlFor="flexSwitchCheckDefault2"
                         style={{ fontSize: "2rem" }}
                       >
-                        Blower
+                        Zone 2
                       </label>
                     </div>
 
+                    {/* Zone 3 Switch */}
                     <div
                       className="form-check form-switch flex-column align-items-center"
                       style={{ fontSize: "2rem" }}
@@ -164,13 +182,15 @@ export const DripIrrigationPage = () => {
                         type="checkbox"
                         id="flexSwitchCheckDefault3"
                         style={{ width: "4rem", height: "2rem" }}
+                        checked={dataSwitch.zone3 === "on"}
+                        onChange={() => handleSwitchChange("zone3")}
                       />
                       <label
                         className="form-check-label"
                         htmlFor="flexSwitchCheckDefault3"
                         style={{ fontSize: "2rem" }}
                       >
-                        Coller
+                        Zone 3
                       </label>
                     </div>
                   </div>
@@ -180,10 +200,13 @@ export const DripIrrigationPage = () => {
                 <div className="card">
                   <div
                     className="d-flex flex-column align-items-center"
-                    style={{ paddingTop: "15px", height: "300px" }} // Add desired height
+                    style={{ paddingTop: "15px", height: "300px" }} 
                   >
                     <Link to="/vertical-farming" className="text-center">
-                      <h5><b>Temperature</b></h5> {/* Center the text */}
+                      <h5>
+                        <b>Temperature</b>
+                      </h5>{" "}
+                      {/* Center the text */}
                       <div
                         className="d-flex justify-content-center align-items-center"
                         style={{
@@ -191,7 +214,7 @@ export const DripIrrigationPage = () => {
                           textAlign: "center",
                           wordWrap: "break-word",
                           overflowWrap: "break-word",
-                        }} // Ensure text wraps
+                        }} 
                       >
                         {data ? (
                           <h1
@@ -217,12 +240,15 @@ export const DripIrrigationPage = () => {
                 <div className="card">
                   <div
                     className="d-flex flex-column align-items-center"
-                    style={{ paddingTop: "15px", height: "300px" }} // Add desired height
+                    style={{ paddingTop: "15px", height: "300px" }} 
                   >
                     {" "}
                     {/* Center content horizontally */}
                     <Link to="/vertical-farming" className="text-center">
-                      <h5><b>Humidity</b></h5> {/* Center the text */}
+                      <h5>
+                        <b>Humidity</b>
+                      </h5>{" "}
+                      {/* Center the text */}
                       <div
                         className="d-flex justify-content-center align-items-center"
                         style={{
@@ -230,7 +256,7 @@ export const DripIrrigationPage = () => {
                           textAlign: "center",
                           wordWrap: "break-word",
                           overflowWrap: "break-word",
-                        }} // Ensure text wraps
+                        }} 
                       >
                         {data ? (
                           <h1
@@ -274,15 +300,15 @@ export const DripIrrigationPage = () => {
             ) : (
               <DataTable
                 columns={columns}
-                data={paginatedData} // Data untuk halaman saat ini
+                data={paginatedData} 
                 pagination
-                paginationTotalRows={data.length} // Total jumlah data
-                paginationPerPage={rowsPerPage} // Jumlah baris per halaman
+                paginationTotalRows={data.length} 
+                paginationPerPage={rowsPerPage} 
                 paginationServer
-                onChangePage={(page) => setCurrentPage(page)} // Update halaman
+                onChangePage={(page) => setCurrentPage(page)} 
                 onChangeRowsPerPage={(newPerPage, page) => {
-                  setRowsPerPage(newPerPage); // Update jumlah baris per halaman
-                  setCurrentPage(page); // Reset halaman saat ini
+                  setRowsPerPage(newPerPage); 
+                  setCurrentPage(page); 
                 }}
                 highlightOnHover
                 responsive
