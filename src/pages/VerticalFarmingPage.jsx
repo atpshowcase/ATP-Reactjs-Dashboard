@@ -18,7 +18,7 @@ export const VerticalFarmingPage = () => {
   const handleSwitchChange = async (zone) => {
     const newState = dataSwitch[zone] === "on" ? "off" : "on";
     try {
-      const response = await fetch(`${apiEndpoints.getObject}/device/vertical/switch  `, {
+      const response = await fetch(`${apiEndpoints.getObject}/device/vertical/switch`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -127,7 +127,7 @@ export const VerticalFarmingPage = () => {
           {" "}
           <Link to="/">Dashboard</Link> /
         </span>{" "}
-        Vertical Farming
+        Puspita Farm 1
       </h4>
 
       <div className="card mb-4">
@@ -154,15 +154,15 @@ export const VerticalFarmingPage = () => {
                         type="checkbox"
                         id="flexSwitchCheckDefault1"
                         style={{ width: "4rem", height: "2rem" }}
-                        checked={dataSwitch.blower1 === "on"}
-                        onChange={() => handleSwitchChange("blower1")}
+                        checked={dataSwitch.zone1 === "on"}
+                        onChange={() => handleSwitchChange("zone1")}
                       />
                       <label
                         className="form-check-label"
                         htmlFor="flexSwitchCheckDefault1"
                         style={{ fontSize: "2rem" }}
                       >
-                        Blower 1
+                        Zone 1
                       </label>
                     </div>
 
@@ -176,19 +176,18 @@ export const VerticalFarmingPage = () => {
                         type="checkbox"
                         id="flexSwitchCheckDefault2"
                         style={{ width: "4rem", height: "2rem" }}
-                        checked={dataSwitch.blower2 === "on"}
-                        onChange={() => handleSwitchChange("blower2")}
+                        checked={dataSwitch.zone2 === "on"}
+                        onChange={() => handleSwitchChange("zone2")}
                       />
                       <label
                         className="form-check-label"
                         htmlFor="flexSwitchCheckDefault2"
                         style={{ fontSize: "2rem" }}
                       >
-                        Blower 2
+                        Zone 2
                       </label>
                     </div>
 
-                    {/* Zone 3 Switch */}
                     <div
                       className="form-check form-switch flex-column align-items-center"
                       style={{ fontSize: "2rem" }}
@@ -198,15 +197,15 @@ export const VerticalFarmingPage = () => {
                         type="checkbox"
                         id="flexSwitchCheckDefault3"
                         style={{ width: "4rem", height: "2rem" }}
-                        checked={dataSwitch.coolingpad === "on"}
-                        onChange={() => handleSwitchChange("coolingpad")}
+                        checked={dataSwitch.zone3 === "on"}
+                        onChange={() => handleSwitchChange("zone3")}
                       />
                       <label
                         className="form-check-label"
                         htmlFor="flexSwitchCheckDefault3"
                         style={{ fontSize: "2rem" }}
                       >
-                        Coolingpad
+                        Zone 3
                       </label>
                     </div>
                   </div>

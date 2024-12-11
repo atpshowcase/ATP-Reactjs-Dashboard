@@ -18,7 +18,7 @@ export const DripIrrigationPage = () => {
   const handleSwitchChange = async (zone) => {
     const newState = dataSwitch[zone] === "on" ? "off" : "on";
     try {
-      const response = await fetch(`${apiEndpoints.getObject}/device/vertical/switch  `, {
+      const response = await fetch(`${apiEndpoints.getObject}/device/vertical/switch`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -127,7 +127,7 @@ export const DripIrrigationPage = () => {
           {" "}
           <Link to="/">Dashboard</Link> /
         </span>{" "}
-        Drip Irrigation
+        Puspita Farm 2
       </h4>
 
       <div className="card mb-4">
@@ -144,7 +144,6 @@ export const DripIrrigationPage = () => {
               <div className="mb-3 col-md-6">
                 <div className="d-flex justify-content-center ">
                   <div className="d-flex flex-column gap-4 align-items-right">
-                    {/* Zone 1 Switch */}
                     <div
                       className="form-check form-switch flex-column align-items-right"
                       style={{ fontSize: "2rem" }}
@@ -154,19 +153,18 @@ export const DripIrrigationPage = () => {
                         type="checkbox"
                         id="flexSwitchCheckDefault1"
                         style={{ width: "4rem", height: "2rem" }}
-                        checked={dataSwitch.zone1 === "on"}
-                        onChange={() => handleSwitchChange("zone1")}
+                        checked={dataSwitch.blower1 === "on"}
+                        onChange={() => handleSwitchChange("blower1")}
                       />
                       <label
                         className="form-check-label"
                         htmlFor="flexSwitchCheckDefault1"
                         style={{ fontSize: "2rem" }}
                       >
-                        Zone 1
+                        Blower 1
                       </label>
                     </div>
 
-                    {/* Zone 2 Switch */}
                     <div
                       className="form-check form-switch flex-column align-items-center"
                       style={{ fontSize: "2rem" }}
@@ -176,19 +174,18 @@ export const DripIrrigationPage = () => {
                         type="checkbox"
                         id="flexSwitchCheckDefault2"
                         style={{ width: "4rem", height: "2rem" }}
-                        checked={dataSwitch.zone2 === "on"}
-                        onChange={() => handleSwitchChange("zone2")}
+                        checked={dataSwitch.blower2 === "on"}
+                        onChange={() => handleSwitchChange("blower2")}
                       />
                       <label
                         className="form-check-label"
                         htmlFor="flexSwitchCheckDefault2"
                         style={{ fontSize: "2rem" }}
                       >
-                        Zone 2
+                        Blower 2
                       </label>
                     </div>
 
-                    {/* Zone 3 Switch */}
                     <div
                       className="form-check form-switch flex-column align-items-center"
                       style={{ fontSize: "2rem" }}
@@ -198,15 +195,15 @@ export const DripIrrigationPage = () => {
                         type="checkbox"
                         id="flexSwitchCheckDefault3"
                         style={{ width: "4rem", height: "2rem" }}
-                        checked={dataSwitch.zone3 === "on"}
-                        onChange={() => handleSwitchChange("zone3")}
+                        checked={dataSwitch.coolingpad === "on"}
+                        onChange={() => handleSwitchChange("coolingpad")}
                       />
                       <label
                         className="form-check-label"
                         htmlFor="flexSwitchCheckDefault3"
                         style={{ fontSize: "2rem" }}
                       >
-                        Zone 3
+                        Coolingpad
                       </label>
                     </div>
                   </div>
