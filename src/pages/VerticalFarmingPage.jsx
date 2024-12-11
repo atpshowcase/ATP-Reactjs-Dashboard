@@ -15,11 +15,28 @@ export const VerticalFarmingPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const handleSwitchChange = (zone) => {
-    setDataSwitch((prevState) => ({
-      ...prevState,
-      [zone]: prevState[zone] === "on" ? "off" : "on",
-    }));
+  const handleSwitchChange = async (zone) => {
+    const newState = dataSwitch[zone] === "on" ? "off" : "on";
+    try {
+      const response = await fetch(`${apiEndpoints.getObject}/device/vertical/switch  `, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          zone: zone,
+          state: newState,
+        }),
+      });
+   
+      if (!response.ok) {
+        throw new Error(`Failed to update switch for ${zone}`);
+      }
+   
+      setDataSwitch((prevState) => ({ ...prevState, [zone]: newState }));
+    } catch (error) {
+      console.error("Error updating switch state:", error); 
+    }
   };
 
   useEffect(() => {
@@ -37,9 +54,7 @@ export const VerticalFarmingPage = () => {
       } finally {
         setLoading(false);
       }
-    };
-
-    fetchData();
+    }; 
 
     const interval = setInterval(() => {
       fetchData();
@@ -139,15 +154,15 @@ export const VerticalFarmingPage = () => {
                         type="checkbox"
                         id="flexSwitchCheckDefault1"
                         style={{ width: "4rem", height: "2rem" }}
-                        checked={dataSwitch.blower === "on"}
-                        onChange={() => handleSwitchChange("blower")}
+                        checked={dataSwitch.blower1 === "on"}
+                        onChange={() => handleSwitchChange("blower1")}
                       />
                       <label
                         className="form-check-label"
                         htmlFor="flexSwitchCheckDefault1"
                         style={{ fontSize: "2rem" }}
                       >
-                        Blower
+                        Blower 1
                       </label>
                     </div>
 
@@ -161,15 +176,15 @@ export const VerticalFarmingPage = () => {
                         type="checkbox"
                         id="flexSwitchCheckDefault2"
                         style={{ width: "4rem", height: "2rem" }}
-                        checked={dataSwitch.coller === "on"}
-                        onChange={() => handleSwitchChange("coller")}
+                        checked={dataSwitch.blower2 === "on"}
+                        onChange={() => handleSwitchChange("blower2")}
                       />
                       <label
                         className="form-check-label"
                         htmlFor="flexSwitchCheckDefault2"
                         style={{ fontSize: "2rem" }}
                       >
-                        Coller
+                        Blower 2
                       </label>
                     </div>
 
@@ -183,15 +198,15 @@ export const VerticalFarmingPage = () => {
                         type="checkbox"
                         id="flexSwitchCheckDefault3"
                         style={{ width: "4rem", height: "2rem" }}
-                        checked={dataSwitch.mist === "on"}
-                        onChange={() => handleSwitchChange("mist")}
+                        checked={dataSwitch.coolingpad === "on"}
+                        onChange={() => handleSwitchChange("coolingpad")}
                       />
                       <label
                         className="form-check-label"
                         htmlFor="flexSwitchCheckDefault3"
                         style={{ fontSize: "2rem" }}
                       >
-                        Mist
+                        Coolingpad
                       </label>
                     </div>
                   </div>

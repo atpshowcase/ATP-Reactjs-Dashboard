@@ -15,12 +15,30 @@ export const DripIrrigationPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const handleSwitchChange = (zone) => {
-    setDataSwitch((prevState) => ({
-      ...prevState,
-      [zone]: prevState[zone] === "on" ? "off" : "on",
-    }));
+  const handleSwitchChange = async (zone) => {
+    const newState = dataSwitch[zone] === "on" ? "off" : "on";
+    try {
+      const response = await fetch(`${apiEndpoints.getObject}/device/vertical/switch  `, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          zone: zone,
+          state: newState,
+        }),
+      });
+   
+      if (!response.ok) {
+        throw new Error(`Failed to update switch for ${zone}`);
+      }
+   
+      setDataSwitch((prevState) => ({ ...prevState, [zone]: newState }));
+    } catch (error) {
+      console.error("Error updating switch state:", error); 
+    }
   };
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,8 +56,6 @@ export const DripIrrigationPage = () => {
         setLoading(false);
       }
     };
-
-    fetchData();
 
     const interval = setInterval(() => {
       fetchData();
