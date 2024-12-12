@@ -18,27 +18,29 @@ export const DripIrrigationPage = () => {
   const handleSwitchChange = async (zone) => {
     const newState = dataSwitch[zone] === "on" ? "off" : "on";
     try {
-      const response = await fetch(`${apiEndpoints.getObject}/device/vertical/switch`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          zone: zone,
-          state: newState,
-        }),
-      });
-   
+      const response = await fetch(
+        `${apiEndpoints.getObject}/device/vertical/switch`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            zone: zone,
+            state: newState,
+          }),
+        }
+      );
+
       if (!response.ok) {
         throw new Error(`Failed to update switch for ${zone}`);
       }
-   
+
       setDataSwitch((prevState) => ({ ...prevState, [zone]: newState }));
     } catch (error) {
-      console.error("Error updating switch state:", error); 
+      console.error("Error updating switch state:", error);
     }
   };
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -122,7 +124,7 @@ export const DripIrrigationPage = () => {
 
   return (
     <div className="container">
-      <h4 className="py-3">
+      <h4 className="py-3" style={{ color: "white" }}>
         <span className="text-muted fw-light">
           {" "}
           <Link to="/">Dashboard</Link> /
@@ -212,40 +214,37 @@ export const DripIrrigationPage = () => {
               <div className="mb-3 col-md-3">
                 <div className="card">
                   <div
-                    className="d-flex flex-column align-items-center"
-                    style={{ paddingTop: "15px", height: "300px" }} 
+                    className="d-flex flex-column align-items-center text-center"
+                    style={{ paddingTop: "15px", height: "300px" }}
                   >
-                    <Link to="/vertical-farming" className="text-center">
-                      <h5>
-                        <b>Temperature</b>
-                      </h5>{" "}
-                      {/* Center the text */}
-                      <div
-                        className="d-flex justify-content-center align-items-center"
-                        style={{
-                          height: "100%",
-                          textAlign: "center",
-                          wordWrap: "break-word",
-                          overflowWrap: "break-word",
-                        }} 
-                      >
-                        {data ? (
-                          <h1
-                            style={{
-                              paddingTop: "50px",
-                              fontSize: "80px",
-                              wordBreak: "break-word",
-                              overflowWrap: "break-word",
-                              textAlign: "center",
-                            }}
-                          >
-                            {data.sensor?.suhu}°
-                          </h1>
-                        ) : (
-                          <p>Loading...</p>
-                        )}
-                      </div>
-                    </Link>
+                    <h5>
+                      <b>Temperature</b>
+                    </h5>{" "}
+                    {/* Center the text */}
+                    <div
+                      className="d-flex justify-content-center align-items-center"
+                      style={{
+                        height: "100%",
+                        textAlign: "center",
+                        wordWrap: "break-word",
+                        overflowWrap: "break-word",
+                      }}
+                    >
+                      {data ? (
+                        <h1
+                          style={{
+                            fontSize: "80px",
+                            wordBreak: "break-word",
+                            overflowWrap: "break-word",
+                            textAlign: "center",
+                          }}
+                        >
+                          {data.sensor?.suhu}°C
+                        </h1>
+                      ) : (
+                        <p>Loading...</p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -253,41 +252,38 @@ export const DripIrrigationPage = () => {
                 <div className="card">
                   <div
                     className="d-flex flex-column align-items-center"
-                    style={{ paddingTop: "15px", height: "300px" }} 
+                    style={{ paddingTop: "15px", height: "300px" }}
                   >
                     {" "}
                     {/* Center content horizontally */}
-                    <Link to="/vertical-farming" className="text-center">
-                      <h5>
-                        <b>Humidity</b>
-                      </h5>{" "}
-                      {/* Center the text */}
-                      <div
-                        className="d-flex justify-content-center align-items-center"
-                        style={{
-                          height: "100%",
-                          textAlign: "center",
-                          wordWrap: "break-word",
-                          overflowWrap: "break-word",
-                        }} 
-                      >
-                        {data ? (
-                          <h1
-                            style={{
-                              paddingTop: "50px",
-                              fontSize: "80px",
-                              wordBreak: "break-word",
-                              overflowWrap: "break-word",
-                              textAlign: "center",
-                            }}
-                          >
-                            {data.sensor?.kelembapan}%
-                          </h1>
-                        ) : (
-                          <p>Loading...</p>
-                        )}
-                      </div>
-                    </Link>
+                    <h5>
+                      <b>Humidity</b>
+                    </h5>{" "}
+                    {/* Center the text */}
+                    <div
+                      className="d-flex justify-content-center align-items-center"
+                      style={{
+                        height: "100%",
+                        textAlign: "center",
+                        wordWrap: "break-word",
+                        overflowWrap: "break-word",
+                      }}
+                    >
+                      {data ? (
+                        <h1
+                          style={{
+                            fontSize: "80px",
+                            wordBreak: "break-word",
+                            overflowWrap: "break-word",
+                            textAlign: "center",
+                          }}
+                        >
+                          {data.sensor?.kelembapan}%
+                        </h1>
+                      ) : (
+                        <p>Loading...</p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -313,15 +309,15 @@ export const DripIrrigationPage = () => {
             ) : (
               <DataTable
                 columns={columns}
-                data={paginatedData} 
+                data={paginatedData}
                 pagination
-                paginationTotalRows={data.length} 
-                paginationPerPage={rowsPerPage} 
+                paginationTotalRows={data.length}
+                paginationPerPage={rowsPerPage}
                 paginationServer
-                onChangePage={(page) => setCurrentPage(page)} 
+                onChangePage={(page) => setCurrentPage(page)}
                 onChangeRowsPerPage={(newPerPage, page) => {
-                  setRowsPerPage(newPerPage); 
-                  setCurrentPage(page); 
+                  setRowsPerPage(newPerPage);
+                  setCurrentPage(page);
                 }}
                 highlightOnHover
                 responsive

@@ -8,8 +8,16 @@ const Layout = ({ children }) => {
     Main();
   },[])
   return (
-    <div className="layout-wrapper layout-content-navbar">
-      <div className="layout-container">
+    <div className="layout-wrapper layout-content-navbar" style={{
+      backgroundImage: `url("https://img.freepik.com/premium-photo/hydroponic-greenhouse-filled-rows-wallpaper_987764-47389.jpg")`, // Replace with your background image path
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}>
+      <div className="layout-container" style={{
+      backgroundSize: "cover",
+      backgroundColor: "rgba(0, 0, 0, 0.3)", // Black filter with 50% opacity, corrected
+      backgroundPosition: "center",
+    }}>
         {/* <Sidebar /> */}
         <div className="layout-page ">
           {/* <Navbar /> */}

@@ -122,7 +122,7 @@ export const VerticalFarmingPage = () => {
 
   return (
     <div className="container">
-      <h4 className="py-3">
+      <h4 className="py-3" style={{ color: "white" }}>
         <span className="text-muted fw-light">
           {" "}
           <Link to="/">Dashboard</Link> /
@@ -219,37 +219,34 @@ export const VerticalFarmingPage = () => {
                   >
                     {" "}
                     {/* Center content horizontally */}
-                    <Link to="/vertical-farming" className="text-center">
-                      <h5>
-                        <b>Temperature</b>
-                      </h5>{" "}
-                      {/* Center the text */}
-                      <div
-                        className="d-flex justify-content-center align-items-center"
-                        style={{
-                          height: "100%",
-                          textAlign: "center",
-                          wordWrap: "break-word",
-                          overflowWrap: "break-word",
-                        }} 
-                      >
-                        {data ? (
-                          <h1
-                            style={{
-                              paddingTop: "50px",
-                              fontSize: "80px",
-                              wordBreak: "break-word",
-                              overflowWrap: "break-word",
-                              textAlign: "center",
-                            }}
-                          >
-                            {data.sensor?.suhu}°
-                          </h1>
-                        ) : (
-                          <p>Loading...</p>
-                        )}
-                      </div>
-                    </Link>
+                    <h5>
+                      <b>Temperature</b>
+                    </h5>{" "}
+                    {/* Center the text */}
+                    <div
+                      className="d-flex justify-content-center align-items-center"
+                      style={{
+                        height: "100%",
+                        textAlign: "center",
+                        wordWrap: "break-word",
+                        overflowWrap: "break-word",
+                      }} 
+                    >
+                      {data ? (
+                        <h1
+                          style={{
+                            fontSize: "80px",
+                            wordBreak: "break-word",
+                            overflowWrap: "break-word",
+                            textAlign: "center",
+                          }}
+                        >
+                          {data.sensor?.suhu}°C
+                        </h1>
+                      ) : (
+                        <p>Loading...</p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -261,37 +258,34 @@ export const VerticalFarmingPage = () => {
                   >
                     {" "}
                     {/* Center content horizontally */}
-                    <Link to="/vertical-farming" className="text-center">
-                      <h5>
-                        <b>Humidity</b>
-                      </h5>{" "}
-                      {/* Center the text */}
-                      <div
-                        className="d-flex justify-content-center align-items-center"
-                        style={{
-                          height: "100%",
-                          textAlign: "center",
-                          wordWrap: "break-word",
-                          overflowWrap: "break-word",
-                        }} 
-                      >
-                        {data ? (
-                          <h1
-                            style={{
-                              paddingTop: "50px",
-                              fontSize: "80px",
-                              wordBreak: "break-word",
-                              overflowWrap: "break-word",
-                              textAlign: "center",
-                            }}
-                          >
-                            {data.sensor?.kelembapan}%
-                          </h1>
-                        ) : (
-                          <p>Loading...</p>
-                        )}
-                      </div>
-                    </Link>
+                    <h5>
+                      <b>Humidity</b>
+                    </h5>{" "}
+                    {/* Center the text */}
+                    <div
+                      className="d-flex justify-content-center align-items-center"
+                      style={{
+                        height: "100%",
+                        textAlign: "center",
+                        wordWrap: "break-word",
+                        overflowWrap: "break-word",
+                      }} 
+                    >
+                      {data ? (
+                        <h1
+                          style={{
+                            fontSize: "80px",
+                            wordBreak: "break-word",
+                            overflowWrap: "break-word",
+                            textAlign: "center",
+                          }}
+                        >
+                          {data.sensor?.kelembapan}%
+                        </h1>
+                      ) : (
+                        <p>Loading...</p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
