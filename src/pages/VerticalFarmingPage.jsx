@@ -42,7 +42,7 @@ export const VerticalFarmingPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${apiEndpoints.getObject}/location/gh1`);
+        const response = await fetch(`${apiEndpoints.getObject}/location/gh2`);
         if (!response.ok) throw new Error("Network response was not ok");
         const result = await response.json();
 
